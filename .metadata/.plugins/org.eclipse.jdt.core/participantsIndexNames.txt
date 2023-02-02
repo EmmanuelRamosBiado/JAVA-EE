@@ -1,0 +1,13 @@
+INDEX VERSION 1.131
+C:\Users\ERB_a\eclipse-workspace-2023\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2276359990.index
+\alimentosMVC-eje\src\main\java
+C:\Users\ERB_a\eclipse-workspace-2023\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3533796131.index
+\cursojavaee\src\main\java
+C:\Users\ERB_a\eclipse-workspace-2023\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1200481095.index
+\MVCbasico\src\main\java
+C:\Users\ERB_a\eclipse-workspace-2023\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4283112338.index
+\alimentosMVC-eje\src\main\java
+C:\Users\ERB_a\eclipse-workspace-2023\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2110223349.index
+\MVCbasico\src\main\java
+C:\Users\ERB_a\eclipse-workspace-2023\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2779136949.index
+\cursojavaee\src\main\java

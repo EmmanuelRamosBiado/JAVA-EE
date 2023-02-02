@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>LISTA DE ALIMENTOS</h1>
+	<hr>
+	<ul>
+		<li>Lista de todos los alimentos <a href="listar"> Enviar</a>
+		</li>
+		<li>Consulta de alimentos:
+			<form method="get" action="consultar">
+				Nº de alimento: <input name="id" type="text" size="4"><br>
+				<button>Enviar</button>
+			</form>
+		</li>
+</body>
+</html>

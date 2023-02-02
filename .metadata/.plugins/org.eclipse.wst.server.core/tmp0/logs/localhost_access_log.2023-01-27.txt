@@ -1,0 +1,9 @@
+127.0.0.1 - - [27/Jan/2023:10:46:25 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:46:25 +0100] "GET /EjerciciosJAVAEE-1/formularioHobbiesSexo.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:46:26 +0100] "GET /favicon.ico HTTP/1.1" 404 1026
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:46:34 +0100] "GET /EjerciciosJAVAEE-1/Ejercicio02?nombre=sss&apellidos=ddd&edad=Mayor+de+55&hobbies=deporte&sexo=mujer HTTP/1.1" 200 460
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:46:34 +0100] "GET /EjerciciosJAVAEE-1/imagenes/mujer.png HTTP/1.1" 200 26671
+127.0.0.1 - - [27/Jan/2023:10:57:23 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:57:24 +0100] "GET /EjerciciosJAVAEE-1/acceso.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:57:28 +0100] "POST /EjerciciosJAVAEE-1/Ejercicio03 HTTP/1.1" 200 46
+0:0:0:0:0:0:0:1 - - [27/Jan/2023:10:57:31 +0100] "GET /EjerciciosJAVAEE-1/Ejercicio03 HTTP/1.1" 500 1735
