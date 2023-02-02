@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form method="get" action="/EjerciciosJAVAEE-1/Ejercicio02" name="datos">
+	
+		Nombre:	<input name="nombre"><br> 
+		Apellidos:	<input name="apellidos"><br> 
+		
+		Edad: 	<select name="edad">
+					<option>Menor de 18</option>
+					<option>De 18 a 30</option>
+					<option>De 30 a 55</option>
+					<option>Mayor de 55</option>
+				</select> 
+		
+		<br> Hobbies:<br> 
+		<input name="hobbies" value="lectura" type="checkbox"> lectura<br>
+		<input name="hobbies" value="tele" type="checkbox">ver la tele<br>
+		<input name="hobbies" value="deporte" type="checkbox">hacer deporte<br>
+		<input name="hobbies" value="emborracharse" type="checkbox">emborracharse<br><br>
+		
+		<input type="radio" id="hombre" name="sexo" value="hombre">
+		<label for="hombre">Hombre</label><br>
+		<input type="radio" id="mujer" name="sexo" value="mujer">
+		<label for="mujer">Mujer</label><br>
+		
+		<button>Enviar</button>
+	
+	</form>
+</body>
+</html>
