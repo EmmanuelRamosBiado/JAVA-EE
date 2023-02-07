@@ -1,0 +1,7 @@
+127.0.0.1 - - [06/Feb/2023:14:04:18 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [06/Feb/2023:14:04:18 +0100] "GET /controljava/WEB-INF/classes/Serverletconsulta.java HTTP/1.1" 404 1002
+127.0.0.1 - - [06/Feb/2023:14:07:43 +0100] "GET / HTTP/1.1" 404 1004
+127.0.0.1 - - [06/Feb/2023:15:00:01 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [06/Feb/2023:15:00:09 +0100] "GET /controljava/WEB-INF/classes/Serverletconsulta.java HTTP/1.1" 404 1002
+127.0.0.1 - - [06/Feb/2023:15:07:30 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [06/Feb/2023:15:07:30 +0100] "GET /primero/EjemploSesion HTTP/1.1" 200 52

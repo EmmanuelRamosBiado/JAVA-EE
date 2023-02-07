@@ -1,0 +1,70 @@
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import modelo.AccesoDatos;
+import modelo.Movimiento;
+
+/**
+ * Servlet implementation class Servletconsulta
+ */
+@WebServlet({ "/Servletconsulta", "/procesarconsulta" })
+public class Servletconsulta extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Servletconsulta() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String cod_cliente = request.getParameter("cod_cliente");
+		//int importeMin = request.getParameter("impMin");
+		//int importeMax = request.getParameter("impMax");
+
+		AccesoDatos mimodelo = AccesoDatos.initModelo();
+
+		String msg;
+
+		/*
+		 * 
+		 * COMPLELETAR
+		 */
+
+		if (!mimodelo.hayMovimientos(cod_cliente)) {
+			msg = "El código de cliente " + cod_cliente + " no se encuentra en la base de datos ";
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/WEB-INF/infoerror.jsp").forward(request, response);
+			return;
+		} else {
+			mimodelo.obtenerListaMovimientos(cod_cliente, importeMax, importeMin);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

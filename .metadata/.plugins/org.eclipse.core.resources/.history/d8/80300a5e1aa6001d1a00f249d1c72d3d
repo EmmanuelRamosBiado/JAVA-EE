@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CONSULTA DE MOVIMIENTOS</title>
+</head>
+<body>
+<h1> CONSULTA DE MOVIMIENTOS</h1>
+	<form method="get" action="procesarconsulta">
+		<label for="codCliente">Código del cliente: </label>
+		<input type="text" name="codCliente"><br>
+		
+		<label for="impMin">Importe mínimo: </label>
+		<input type="text" name="impMin"><br>
+		
+		<label for="impMin">Importe máximo: </label>
+		<input type="text" name="impMax"><br>
+	</form>
+</body>
+</html>
