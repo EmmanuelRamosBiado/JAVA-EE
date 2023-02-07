@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.AccesoDatos2;
+import modelo.AccesoDatos;
 import modelo.Movimiento;
 
 /**
@@ -62,7 +62,7 @@ public class Servletconsulta extends HttpServlet {
 			return;
 		}
 
-		AccesoDatos2 mimodelo = AccesoDatos2.initModelo();
+		AccesoDatos mimodelo = AccesoDatos.initModelo();
 
 		if (!mimodelo.hayMovimientos(cod_cliente)) {
 			msg = "El código de cliente " + cod_cliente + " no se encuentra en la base de datos ";
