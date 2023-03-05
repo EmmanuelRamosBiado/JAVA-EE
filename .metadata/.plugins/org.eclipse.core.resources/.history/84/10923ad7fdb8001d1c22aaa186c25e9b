@@ -1,0 +1,106 @@
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Servletprocesar
+ */
+@WebServlet({ "/Servletprocesar", "/miconsulta" })
+public class Servletprocesar extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Servletprocesar() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		String codCliente = request.getParameter("id_cliente");
+		String clave_Cliente = request.getParameter("pw_cliente");
+		
+		String mensaje;
+		
+		if (codCliente == null || codCliente.isEmpty() || clave_Cliente == null || clave_Cliente.isEmpty()) {
+			mensaje = "Faltan parámetros por introducir.";
+			request.setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("/WEB-INF/layout/error.jsp").forward(request, response);
+			return;
+		}
+
+		int cod_cliente = -1;
+		boolean error = false;
+
+		try {
+			cod_cliente = Integer.parseInt(codCliente);
+
+		} catch (NumberFormatException ex) {
+			error = true;
+		}
+		
+		AccesoDatos db = AccesoDatos.initModelo();
+		Cliente cliente =   db.getCliente(cod_cliente);
+		
+		if (cliente!=null) {
+			if((cliente.getPw_cliente()).equals(clave_Cliente)) {
+				if(cliente.getBloqueado())==1) {
+					mensaje="Su cuenta está bloqueada";
+					request.setAttribute("mensaje", mensaje);
+					request.getRequestDispatcher("/WEB-INF/layout/vista.jsp").forward(request, response);
+					return;
+				}
+				db.actualizarIntentosBien(cliente);
+				mensaje=db.obtenerIngresos(cliente);
+				request.setAttribute("mensaje", mensaje);
+				request.getRequestDispatcher("/WEB-INF/layout/vista.jsp").forward(request, response);
+				return;
+			} else {
+				mensaje="Los valores de código de cliente y contraseña no son válidos";
+				db.actualizarIntentosMal(cod_cliente);
+				request.setAttribute("mensaje", mensaje);
+				request.getRequestDispatcher("/WEB-INF/layout/error.jsp").forward(request, response);
+			}
+			
+		}
+		
+		if(cliente==null || error==false) {
+			mensaje="Los valores de código de cliente y contraseña no son válidos";
+			request.setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("/WEB-INF/layout/error.jsp").forward(request, response);
+			return;
+		}
+		
+		if(cliente.getCont_error_acceso()>=3) {
+			db.bloquear(cliente.getId_cliente());
+			mensaje="Su cuenta ha sido bloqueada, ponga se en contacto con su oficina bancaria";
+			request.setAttribute("mensaje", mensaje);
+			request.getRequestDispatcher("/WEB-INF/layout/error.jsp").forward(request, response);
+			return;
+		}
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

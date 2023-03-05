@@ -1,0 +1,16 @@
+127.0.0.1 - - [09/Feb/2023:12:14:26 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:28 +0100] "GET /UsuariosMVC/index.jsp HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:28 +0100] "GET /UsuariosMVC/indice HTTP/1.1" 200 2040
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:28 +0100] "GET /UsuariosMVC/web/default.css HTTP/1.1" 200 995
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:28 +0100] "GET /UsuariosMVC/web/js/funciones.js HTTP/1.1" 200 206
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:28 +0100] "GET /favicon.ico HTTP/1.1" 404 1026
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:33 +0100] "GET /UsuariosMVC/indice?orden=Detalles&id=2r34 HTTP/1.1" 200 1158
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:36 +0100] "POST /UsuariosMVC/indice?orden=Detalles&id=2r34 HTTP/1.1" 200 2040
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:14:38 +0100] "GET /UsuariosMVC/indice?orden=Detalles&id=2r34 HTTP/1.1" 200 1158
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:15:41 +0100] "POST /UsuariosMVC/indice?orden=Detalles&id=2r34 HTTP/1.1" 200 2040
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:15:43 +0100] "GET /UsuariosMVC/indice?orden=Modificar&id=2r34 HTTP/1.1" 200 1135
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:15:50 +0100] "POST /UsuariosMVC/indice?orden=Modificar&id=2r34 HTTP/1.1" 200 2044
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:16:03 +0100] "GET /UsuariosMVC/indice?orden=Modificar&id=2r34 HTTP/1.1" 200 1137
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:16:14 +0100] "POST /UsuariosMVC/indice?orden=Modificar&id=2r34 HTTP/1.1" 200 2050
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:16:58 +0100] "GET /UsuariosMVC/indice?orden=Nuevo HTTP/1.1" 200 1077
+0:0:0:0:0:0:0:1 - - [09/Feb/2023:12:17:13 +0100] "POST /UsuariosMVC/indice?orden=Nuevo HTTP/1.1" 200 2323

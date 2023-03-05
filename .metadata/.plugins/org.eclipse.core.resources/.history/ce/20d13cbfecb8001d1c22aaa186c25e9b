@@ -1,0 +1,9 @@
+
+public class Cliente {
+
+	private int id_cliente;
+	  private String pw_cliente;
+	  private String nombre;
+	  private int bloqueado;
+	  private cont_error_acceso;
+}

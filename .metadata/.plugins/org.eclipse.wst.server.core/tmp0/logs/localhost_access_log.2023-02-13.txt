@@ -1,0 +1,17 @@
+127.0.0.1 - - [13/Feb/2023:14:06:22 +0100] "GET / HTTP/1.1" 404 1004
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:23 +0100] "GET /UsuariosMVC/WEB-INF/layout/principal.jsp HTTP/1.1" 404 1002
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:23 +0100] "GET /favicon.ico HTTP/1.1" 404 1026
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:25 +0100] "GET /UsuariosMVC/WEB-INF/layout/principal.jsp HTTP/1.1" 404 1002
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:39 +0100] "GET /UsuariosMVC/WEB-INF/ HTTP/1.1" 404 1002
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:43 +0100] "GET /UsuariosMVC/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:44 +0100] "GET /UsuariosMVC/indice HTTP/1.1" 200 2323
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:44 +0100] "GET /UsuariosMVC/web/default.css HTTP/1.1" 200 995
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:44 +0100] "GET /UsuariosMVC/web/js/funciones.js HTTP/1.1" 200 206
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:55 +0100] "GET /UsuariosMVC/indice?orden=Modificar&id=sssss HTTP/1.1" 200 1119
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:57 +0100] "POST /UsuariosMVC/indice?orden=Modificar&id=sssss HTTP/1.1" 200 2323
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:06:59 +0100] "GET /UsuariosMVC/indice?orden=Detalles&id=sssss HTTP/1.1" 200 1142
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:07:01 +0100] "POST /UsuariosMVC/indice?orden=Detalles&id=sssss HTTP/1.1" 200 2323
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:07:04 +0100] "GET /UsuariosMVC/indice?orden=Nuevo HTTP/1.1" 200 1077
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:07:06 +0100] "POST /UsuariosMVC/indice?orden=Nuevo HTTP/1.1" 200 2543
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:07:12 +0100] "GET /UsuariosMVC/indice?orden=Borrar&id= HTTP/1.1" 200 2323
+0:0:0:0:0:0:0:1 - - [13/Feb/2023:14:07:31 +0100] "GET /UsuariosMVC/indice?orden=Detalles&id=1123 HTTP/1.1" 200 1142

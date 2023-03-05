@@ -1,0 +1,7 @@
+
+public class Movimiento {
+	private int id_mov;
+	private int id_cliente;
+	private String concepto;
+	private int importe;
+}

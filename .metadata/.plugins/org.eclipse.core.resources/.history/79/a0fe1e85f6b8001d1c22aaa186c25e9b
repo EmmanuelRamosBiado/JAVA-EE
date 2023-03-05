@@ -1,0 +1,137 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import modelo.Cliente;
+import modelo.Usuario;
+
+
+
+
+public class AccesoDatos {
+
+	
+	private static AccesoDatos modelo;
+    private static Connection conexion = null;
+    
+    private PreparedStatement stmt_clientes =null; 
+    private PreparedStatement stmt_actError = null;
+    private PreparedStatement stmt_movimientos = null;
+    
+    public static synchronized AccesoDatos initModelo() {
+        if (modelo == null) {
+            modelo = new AccesoDatos();
+        }
+        return modelo;
+    }
+    
+    private AccesoDatos() {
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/mibancodb", "root", "");
+
+            this.stmt_clientes = conexion.prepareStatement("select * from clientes where id_cliente = ? AND pw_cliente = ?");
+            this.stmt_actError= conexion.prepareStatement("update clientes set cont_error_acceso = ? where id_cliente=?");
+            this.stmt_movimientos= conexion.prepareStatement("select * from movimientos where id_cliente = ?");
+            
+            //this.stmt_updateCliente = conexion.prepareStatement("UPDATE clientes SET cod_car = ? WHERE cod_cli = ?");
+            //this.stmt_updateVehiculo = conexion.prepareStatement("UPDATE vehiculos SET estado = 1 WHERE cod_car = ?");
+
+        } catch (Exception ex) {
+            System.err.println(" Error - En la base de datos.");
+            ex.printStackTrace();
+        }
+    }
+
+    public static void closeModelo() {
+        if (modelo != null) {
+            try {
+                conexion.close();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+    
+public Cliente getCliente(int codigo, String clave) {
+    	
+    	Cliente resu = null;
+        try {
+            this.stmt_clientes.setInt(1, codigo);
+            this.stmt_clientes.setString(2, clave);
+            ResultSet rs = this.stmt_clientes.executeQuery();
+            if (rs.next()) {
+                resu = new Cliente();
+                resu.setId_cliente(rs.getInt("id_cliente"));
+                resu.setPw_cliente(rs.getString("pw_cliente"));
+                resu.setNombre(rs.getString("nombre"));
+                resu.setId_cliente(rs.getInt("bloqueado"));
+                resu.setId_cliente(rs.getInt("cont_error_acceso"));
+                
+            } 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return resu;
+
+    }
+
+public ArrayList<Movimiento> getMovimientos(){
+	ArrayList<Movimiento> tmov = new ArrayList<Movimiento>();
+	
+	ResultSet rs;
+	try {
+		rs = this.stmt_movimientos.executeQuery();
+		while (rs.next()) {
+			Movimiento mov = new Movimiento();
+			mov.setId_mov(rs.getInt("id_mov"));
+			mov.setId_cliente(rs.getInt("id_cliente"));
+			mov.setConcepto(rs.getString("concepto"));
+			mov.setImporte(rs.getInt("importe"));
+			tmov.add(mov);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return tmov;
+}
+    
+    public String obtenetIngresos(Cliente cli) {
+    	String msg="";
+    	String titulos[] = { "ID Movimientos", "ID Cliente", "Concepto", "Importe" };
+    	
+    	
+    	return msg;
+    }
+    
+    
+    
+ public void actualizarIntentos(Cliente cli) {
+	 try {
+         
+		 this.stmt_actError.setInt(1, cli.getCont_error_acceso());
+         this.stmt_actError.setInt(2, cli.getId_cliente());
+         stmt_actError.execute();
+          
+     } catch (SQLException e) {
+         throw new RuntimeException(e);
+     }
+ }
+    
+    public AccesoDatos clone() {
+        try {
+            throw new CloneNotSupportedException();
+        } catch (CloneNotSupportedException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+}

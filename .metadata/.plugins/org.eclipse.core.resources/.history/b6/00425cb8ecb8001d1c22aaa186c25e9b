@@ -1,0 +1,9 @@
+
+public class Cliente {
+
+	private int id_cliente;
+	  `pw_cliente` varchar(10) DEFAULT NULL,
+	  `nombre` varchar(20) DEFAULT NULL,
+	  `bloqueado` int(1) DEFAULT '0',
+	  `cont_error_acceso` int(2) DEFAULT NULL
+}

@@ -1,0 +1,173 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class AccesoDatos {
+
+	private static AccesoDatos modelo;
+	private static Connection conexion = null;
+
+	private PreparedStatement stmt_clientes = null;
+	private PreparedStatement stmt_actErrorBien = null;
+	private PreparedStatement stmt_actErrorMal = null;
+	private PreparedStatement stmt_movimientos = null;
+	private PreparedStatement stmt_bloquear = null;
+
+	public static synchronized AccesoDatos initModelo() {
+		if (modelo == null) {
+			modelo = new AccesoDatos();
+		}
+		return modelo;
+	}
+
+	private AccesoDatos() {
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/mibancodb", "root", "");
+
+			this.stmt_clientes = conexion
+					.prepareStatement("select * from clientes where id_cliente = ? AND pw_cliente = ?");
+			this.stmt_actErrorBien = conexion
+					.prepareStatement("update clientes set cont_error_acceso = 0 where id_cliente=?");
+			this.stmt_movimientos = conexion.prepareStatement("select * from movimientos where id_cliente = ?");
+			this.stmt_movimientos = conexion.prepareStatement("update clientes set bloqueado=1 where id_cliente=?");
+
+		} catch (Exception ex) {
+			System.err.println(" Error - En la base de datos.");
+			ex.printStackTrace();
+		}
+	}
+
+	public static void closeModelo() {
+		if (modelo != null) {
+			try {
+				conexion.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public Cliente getCliente(int codigo, String clave) {
+
+		Cliente resu = null;
+		try {
+			this.stmt_clientes.setInt(1, codigo);
+			this.stmt_clientes.setString(2, clave);
+			ResultSet rs = this.stmt_clientes.executeQuery();
+			if (rs.next()) {
+				resu = new Cliente();
+				resu.setId_cliente(rs.getInt("id_cliente"));
+				resu.setPw_cliente(rs.getString("pw_cliente"));
+				resu.setNombre(rs.getString("nombre"));
+				resu.setId_cliente(rs.getInt("bloqueado"));
+				resu.setId_cliente(rs.getInt("cont_error_acceso"));
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return resu;
+
+	}
+
+	public ArrayList<Movimiento> getMovimientos(int id_cliente) {
+		ArrayList<Movimiento> tmov = new ArrayList<Movimiento>();
+
+		ResultSet rs;
+		try {
+			this.stmt_movimientos.setInt(1, id_cliente);
+			rs = this.stmt_movimientos.executeQuery();
+			while (rs.next()) {
+				Movimiento mov = new Movimiento();
+				mov.setId_mov(rs.getInt("id_mov"));
+				mov.setId_cliente(rs.getInt("id_cliente"));
+				mov.setConcepto(rs.getString("concepto"));
+				mov.setImporte(rs.getInt("importe"));
+				tmov.add(mov);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tmov;
+	}
+
+	public String obtenerIngresos(Cliente cli) {
+		String msg = "";
+		String titulos[] = { "ID Movimientos", "ID Cliente", "Concepto", "Importe" };
+
+		msg += "<table>\n";
+		//
+		msg += "<tr>";
+		for (int j = 0; j < titulos.length; j++) {
+			msg += "<th>" + titulos[j] + "</th>";
+		}
+		msg += "</tr>";
+		AccesoDatos db = AccesoDatos.initModelo();
+		ArrayList<Movimiento> tmov = db.getMovimientos(cli.getId_cliente());
+		for (Movimiento mov : tmov) {
+			msg += "<tr>";
+			msg += "<td>" + mov.getId_mov() + "</td>";
+			msg += "<td>" + mov.getId_cliente() + "</td>";
+			msg += "<td>" + mov.getConcepto() + "</td>";
+			msg += "<td>" + mov.getImporte() + "</td>";
+			msg += "</tr>\n";
+
+		}
+		msg += "</table>";
+
+		return msg;
+	}
+
+	public void actualizarIntentosBien(Cliente cli) {
+		try {
+
+			
+			this.stmt_actErrorBien.setInt(1, cli.getId_cliente());
+			stmt_actErrorBien.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void actualizarIntentosMal(Cliente cli, int num) {
+		try {
+
+			this.stmt_actError.setInt(1, num);
+			this.stmt_actError.setInt(2, cli.getId_cliente());
+			stmt_actError.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public void bloquear(int id_cliente) {
+		try {
+
+			this.stmt_bloquear.setInt(1, id_cliente);
+			stmt_actError.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public AccesoDatos clone() {
+		try {
+			throw new CloneNotSupportedException();
+		} catch (CloneNotSupportedException ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
+}
